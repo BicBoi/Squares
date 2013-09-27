@@ -18,9 +18,10 @@ namespace WindowsGame1
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        Texture2D Wrecktangle;
-        Rectangle currentSquare;
-        Color[] colors = new Color[1] { Color.Red };
+
+        Texture2D squareTexture;
+        
+        
 
         public Game1()
         {
@@ -49,7 +50,7 @@ namespace WindowsGame1
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            Wrecktangle = Content.Load<Texture2D>("Wrecktangle");
+            squareTexture = Content.Load<Texture2D>("Wrecktangle");
 
             // TODO: use this.Content to load your game content here
         }
@@ -77,14 +78,29 @@ namespace WindowsGame1
             // TODO: Add your update logic here
 
             base.Update(gameTime);
+         
         }
-
 
         public void DrawBlankScreen()
         {
-            for (int i = 0; i < 100; i++)
+            int x = 0;
+            int y = 0;
+            for (int i = 0; i < 10000; i++)
             {
-                
+                Rectangle ColorSquare = new Rectangle(x, y, 14, 14);
+                spriteBatch.Begin();
+
+                spriteBatch.Draw(squareTexture, ColorSquare, Color.Red);
+
+                x += 15;
+                if (i % 53 == 52)
+                {
+                    y += 15;
+                    x = 0;
+                }
+
+                spriteBatch.End();
+
             }
         }
 
@@ -96,6 +112,8 @@ namespace WindowsGame1
         {
             GraphicsDevice.Clear(Color.Green);
 
+            
+
             DrawBlankScreen();
             //DrawCheckerBoard();
             //DrawRainbow();
@@ -105,6 +123,7 @@ namespace WindowsGame1
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+            
         }
     }
 }
