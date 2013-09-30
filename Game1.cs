@@ -104,19 +104,45 @@ namespace WindowsGame1
             }
         }
 
+            public void DrawRainbow()
+        {
+            int x = 0;
+            int y = 0;
+            for (int i = 0; i < 10000; i++)
+            {
+                Rectangle ColorSquare = new Rectangle(x, y, 14, 14);
+                spriteBatch.Begin();
+
+                spriteBatch.Draw(squareTexture, ColorSquare, Color.Gold);
+
+                x += 30;
+                
+                if (i % 53 == 52)
+                {
+                    y += 15;
+                    x = 15;
+                }
+  
+                spriteBatch.End();
+
+            }
+
+
+        }
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Green);
+            GraphicsDevice.Clear(Color.Black);
 
             
 
-            DrawBlankScreen();
+           // DrawBlankScreen();
             //DrawCheckerBoard();
-            //DrawRainbow();
+            DrawRainbow();
             //DrawRandom();
 
 
