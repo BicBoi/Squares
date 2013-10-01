@@ -104,7 +104,7 @@ namespace WindowsGame1
             }
         }
 
-            public void DrawRainbow()
+        public void DrawCheckerBoard()
         {
             int x = 0;
             int y = 0;
@@ -112,15 +112,15 @@ namespace WindowsGame1
             {
                 Rectangle ColorSquare = new Rectangle(x, y, 14, 14);
                 spriteBatch.Begin();
-
+                if (i % 2 == 0)
                 spriteBatch.Draw(squareTexture, ColorSquare, Color.Gold);
 
-                x += 30;
+                x += 15;
                 
                 if (i % 53 == 52)
                 {
                     y += 15;
-                    x = 15;
+                    x = 0;
                 }
   
                 spriteBatch.End();
@@ -129,6 +129,54 @@ namespace WindowsGame1
 
 
         }
+
+        public void DrawRainbow()
+        {
+            int x = 0;
+            int y = 0;
+            for (int i = 0; i < 7; i++)
+            {
+                Rectangle ColorSquare = new Rectangle(x, y, 115, 800);
+                spriteBatch.Begin();
+              
+                if (i == 0)
+                    spriteBatch.Draw(squareTexture, ColorSquare, Color.Red);
+                else if (i == 1 )
+                    spriteBatch.Draw(squareTexture, ColorSquare, Color.Orange);
+                else  if (i == 2)
+                    spriteBatch.Draw(squareTexture, ColorSquare, Color.Yellow);
+                else if (i == 3)
+                    spriteBatch.Draw(squareTexture, ColorSquare, Color.Green);
+                else if (i == 4)
+                    spriteBatch.Draw(squareTexture, ColorSquare, Color.Blue);
+                else if (i == 5)
+                    spriteBatch.Draw(squareTexture, ColorSquare, Color.Indigo);
+                else if (i == 6)
+                    spriteBatch.Draw(squareTexture, ColorSquare, Color.Violet);
+
+                x += 115;
+
+                spriteBatch.End();
+
+            }
+
+
+        }
+
+        private void DrawRandom()
+        {
+            Random random = new Random();
+
+            spriteBatch.Begin();
+
+            Rectangle[] RandomSquare = new Rectangle[100];
+            Rectangle ColorSquare = new Rectangle(x, y, 14, 14);
+
+
+            spriteBatch.End();
+
+        }
+
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -142,8 +190,8 @@ namespace WindowsGame1
 
            // DrawBlankScreen();
             //DrawCheckerBoard();
-            DrawRainbow();
-            //DrawRandom();
+            //DrawRainbow();
+            DrawRandom();
 
 
             // TODO: Add your drawing code here
