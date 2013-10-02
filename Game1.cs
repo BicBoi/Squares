@@ -20,6 +20,10 @@ namespace WindowsGame1
         SpriteBatch spriteBatch;
 
         Texture2D squareTexture;
+
+        bool Squares = true;
+
+        Rectangle[] RandomSquare = new Rectangle[100];
         
         
 
@@ -165,13 +169,22 @@ namespace WindowsGame1
 
         private void DrawRandom()
         {
-            Random random = new Random();
+            if (Squares)
+            {
+                Random random = new Random();
+                for (int i = 0; i < 100; i++)
+                {
+                    RandomSquare[i] = new Rectangle(random.Next(0,this.Window.ClientBounds.Width), random.Next(0,this.Window.ClientBounds.Height), random.Next(0, 80), random.Next(0, 80));
+                }
+                Squares = false;
+            }
 
             spriteBatch.Begin();
 
-            Rectangle[] RandomSquare = new Rectangle[100];
-            Rectangle ColorSquare = new Rectangle(x, y, 14, 14);
-
+            for (int i = 0; i < 100; i++)
+            {
+                spriteBatch.Draw(squareTexture, RandomSquare[i], Color.White);
+            }
 
             spriteBatch.End();
 
