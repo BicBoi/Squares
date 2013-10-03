@@ -11,6 +11,13 @@ using Microsoft.Xna.Framework.Media;
 
 namespace WindowsGame1
 {
+    enum ScreenState
+    {
+        Blank,
+        Checker,
+        Rainbow,
+        Crazy
+    }
     /// <summary>
     /// This is the main type for your game
     /// </summary>
@@ -18,7 +25,7 @@ namespace WindowsGame1
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        ScreenState CurrentScreen = ScreenState.Blank;
         Texture2D squareTexture;
 
         bool Squares = true;
@@ -80,6 +87,23 @@ namespace WindowsGame1
                 this.Exit();
 
             // TODO: Add your update logic here
+            KeyboardState kb = Keyboard.GetState();
+            if (kb.IsKeyDown(Keys.D1))
+            {
+                CurrentScreen = ScreenState.Blank;
+            }
+            else if (kb.IsKeyDown(Keys.D2))
+            {
+                CurrentScreen = ScreenState.Checker;
+            }
+            else if (kb.IsKeyDown(Keys.D3))
+            {
+                CurrentScreen = ScreenState.Rainbow;
+            }
+            else if (kb.IsKeyDown(Keys.D4))
+            {
+                CurrentScreen = ScreenState.Crazy;
+            }
 
             base.Update(gameTime);
          
@@ -199,12 +223,26 @@ namespace WindowsGame1
         {
             GraphicsDevice.Clear(Color.Black);
 
-            
+            switch (CurrentScreen)
+            {
+                case ScreenState.Blank:
+                    DrawBlankScreen();
+                    break;
+                case ScreenState.Checker:
+                    DrawCheckerBoard();
+                    break;
+                case ScreenState.Rainbow:
+                    DrawRainbow();
+                    break;
+                case ScreenState.Crazy:
+                    DrawRandom();
+                    break;
+            }
 
            // DrawBlankScreen();
             //DrawCheckerBoard();
             //DrawRainbow();
-            DrawRandom();
+            // DrawRandom();
 
 
             // TODO: Add your drawing code here
